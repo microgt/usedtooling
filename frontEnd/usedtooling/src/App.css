@@ -1,0 +1,582 @@
+body{
+    overflow-x: hidden;
+}
+
+.mobileVisible{
+    display: none;
+}
+
+a:visited{
+    color: inherit;
+}
+a:link{
+    text-decoration: inherit;
+    color: white;
+}
+.Header{
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Courier New', Courier, monospace;
+}
+.Header > img{
+    cursor: pointer;
+}
+.Nav{
+    background-image: linear-gradient(to right, darkblue, darkblue, blue);
+    color: white;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    align-items: center;
+    justify-content: space-around;
+}
+.fixed-nav{
+    background-image: linear-gradient(to right, darkblue, darkblue, blue);
+    color: white;
+    display: flex;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.search{
+    display: flex;
+    justify-content: space-between;
+}
+.search > img{
+    padding-left: 5%;
+}
+.search > input{
+    background-color:rgba(0, 0, 0, 0);
+    color: white;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom-width: 1px;
+    border-color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: larger;
+}
+.newTools{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: darkblue;
+    padding: 2%;
+    margin: 5%;
+}
+.newTools > a{
+    padding: 2%;
+    padding-bottom: 3%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 300%;
+}
+
+.tools{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.tools > button{
+    margin: 24%;
+    padding: 1%;
+    color: black;
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(0, 0, 0, 0.0);
+    border-radius: 45%;
+}
+.tools > button:Hover{
+    margin: 24%;
+    padding: 1%;
+    color: black;
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 45%;
+}
+
+#lt{
+    position: absolute;
+    margin-right: 120%;
+    z-index: 10;
+    cursor: pointer;
+}
+#gt{
+    position: absolute;
+    margin-right: -72%;
+    z-index: 10;
+    cursor: pointer;
+}
+.toolBox > img{
+    width: 192px;
+    cursor: pointer;
+}
+.toolBox > button{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: darkred;
+    padding: 10%;
+    color: white;
+    font-size: medium;
+    width: max-content;
+    margin-left: 0%;
+    cursor: pointer;
+}
+
+.toolBox{
+    padding-left: 6%;
+    padding-right: 6%;
+    border-right-width: 1px;
+    border-right: solid;
+    border-right-color: rgba(0, 0, 0, 0.25);
+    color: black;
+    font-family: Arial, Helvetica, sans-serif; 
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    cursor: pointer;
+}
+.starContainer{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20%;
+    font-size: xx-large;
+}
+.starContainer > a{
+    font-size: large;
+    padding: 4%;
+    vertical-align: baseline;
+}
+
+.blueStar{
+    color: blue;
+}
+.greyStar{
+    color: grey;
+}
+
+.riggingServices, .AboutUs, .ContactForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: darkblue;
+    padding: 2%;
+}
+
+
+.ContactUs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: White;
+    padding: 2%;
+    background-image: linear-gradient(to right, darkblue, darkblue, blue);
+
+}
+.aboutContent{
+    text-align: center;
+}
+.aboutContent > h4{
+    padding: 2%;
+}
+.riggingServices > img, .aboutContent > img{
+    padding: 2%;
+}
+.riggingServices > a, .AboutUs > a, .ContactUs, .ContactForm > a{
+    padding: 2%;
+    padding-bottom: 3%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 300%;
+}
+.riggingContent, .aboutContent{
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+}
+
+.dots{
+    display: flex;
+    position: relative;
+    margin-top: -5%;
+    margin-left: 50%;
+    color: rgba(0, 0, 0, 0);
+}
+.dot{
+  background-color: rgba(255, 255, 255, 0.5); 
+  border-radius: 50%;
+  margin: 0.5%;
+  display: block;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.dotCurrent{
+  background-color: rgba(255, 255, 255, 0.75); 
+  border-radius: 50%;
+  margin: 0.5%;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+.gallery{
+    text-align: center;
+}
+.gallery > .active{
+    height: 600px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0.1; }
+    100% { opacity: 1; }
+  }
+
+.phoneIcon{
+    font-size: x-large;
+    padding-right: 2%;
+    vertical-align: middle;
+}
+
+.emailIcon{
+    font-size: 750%;
+    padding-right: 2%;
+    vertical-align: middle;
+}
+
+.contactButton{
+    text-align: center;
+}
+
+.contactContent{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    font-size: x-large;
+}
+.contactContent > div{
+    padding: 2%;
+    padding-bottom: 10%;
+
+}
+
+.map{
+    border-radius: 50%;
+}
+
+.Footer{
+    display: flex;
+    flex-direction: column;
+}
+.footerLinks{
+    
+    font-size: x-large;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.Footer > .footerLinks :link{
+    color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-right: rgba(0, 0, 0, 0.25);
+    border-right-width: 2px;
+    border-right-style: solid;
+}
+
+.flavor{
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.copyrights{
+    text-align: center;
+    font-size: x-large;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.socialMedia{
+    display: flex;
+    justify-content: end;
+    font-size: x-large;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.socialMedia > a{
+    padding-left: 2%;
+}
+
+.ContactForm{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-family: 'Courier New', Courier, monospace;
+    align-items: center;
+}
+.contactFormContents{
+    color: black;
+    padding: 2%;
+    border-color: darkblue;
+    border-width: 1%;
+    border-radius: 2%;
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;  
+ }
+.contactFormContents > form > div{
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    padding: 3%;
+    width: 100%;
+}
+
+button {
+    background-color: darkred;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin-left: 80%;
+}
+
+.storeContent{
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(256px, 1fr));
+    width: 100%;
+}
+.storeContent >*{
+    border-style: none;
+    margin-bottom: 25%;
+}
+.topInfo{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 15%;
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+.topInfo > img{
+    width: 25%;
+}
+.leftInfo{
+    display: flex;
+    flex-direction: column;
+}
+.ebayButtons > a{
+    text-align: center;
+    background-color: darkblue;
+    color: white;
+    padding: 2%;
+    margin: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    width: 100%;
+}
+
+#voeb{
+    background-color: blue;
+    width: 100%;
+}
+#pdesc{
+    width: 100%;
+    height: 512px;
+}
+
+.ebayButtons{
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.filterbar{
+    text-align: end;
+    padding: 1%;
+    padding-right: 2%;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.filterbar > *{
+    margin-left: 1%;
+}
+
+.icount{
+    padding-left: 2%;
+}
+
+.mobileVisible{
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .newTools{
+        overflow-x: hidden;
+    }
+    .Header{
+        justify-content: center;
+    }
+    .mobileHidden{
+        display: none;
+    }    
+    .riggingServices > a, .AboutUs > a, .ContactUs, .ContactForm > a{
+        padding: 2%;
+        padding-bottom: 3%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        font-size: 300%;
+        text-align: center;
+    }
+
+    .riggingServices > img, iframe{
+        width: 100%;
+    }
+
+    .contactContent{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: space-evenly;
+        font-size: x-large;
+    }
+
+    .map{
+        border-radius: 0%;
+    }
+    .footerLinks{
+        flex-direction: column;
+        text-align: center;
+    }
+    .flavor > p {
+        text-align: center;
+    }
+    .socialMedia{
+        justify-content: center;
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+    .socialMedia > a > img{
+        width: 250%;
+    }
+    .socialMedia > a{
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        justify-content: center;
+    }
+    .tools{
+        translate: -20%;
+    }
+
+    #lt{
+        position: absolute;
+        margin-right: -8%;
+        z-index: 10;
+        cursor: pointer;
+    }
+    #gt{
+        position: absolute;
+        margin-right: -24%;
+        z-index: 10;
+        cursor: pointer;
+    }
+    
+    .leftInfo{
+       text-align: center;
+    }
+
+    .ebayButtons{
+        text-align: center;
+        width: 100%;
+    }
+
+    .topInfo{
+        flex-direction: column;
+    }
+    .topInfo > img{
+        width: 100%;
+    }
+    
+    .contactFormContents > form > div{
+        flex-direction: column;
+        padding: 0%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+    }
+    .contactFormContents{
+        margin-bottom: 50%;
+    }
+    .sendButton > button{
+        margin-left: 0%;
+    }
+    .storeContent{
+        margin-bottom: 50%;
+    }
+    .storeContent > .toolBox{
+        align-items: center;
+    }
+    .filterbar {
+        font-size: large;
+        padding-top: 5%;
+    }
+    .filterbar > *{
+        padding: 1%;
+    }
+    .filterbar > select{
+        font-size: large;
+    }
+
+    .mobileVisible{
+        display: block;
+    }
+    #menuHidden{
+        display: none;
+    }
+    #mobilem{
+        justify-content: space-between;
+        width: 100%;
+        font-size: x-large;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        margin-top: 10%;
+        margin-bottom: 100%;
+    }
+    .Nav, .fixed-nav{
+        padding: 10%;
+    }
+    .fixed-nav{
+        width: 80%;
+    }
+    .Nav > *, .fixed-nav > *{
+        padding: 5%;
+    }
+}
