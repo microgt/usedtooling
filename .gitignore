@@ -15,3 +15,7 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+complete/src/main/resources/application.properties
+testScrape/src/main/resources/application.properties
+web/src/main/resources/application.properties
+images/

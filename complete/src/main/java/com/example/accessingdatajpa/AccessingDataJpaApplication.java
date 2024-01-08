@@ -38,9 +38,11 @@ public class AccessingDataJpaApplication {
 			if (products.isEmpty()) return;
 
 			products.forEach(product -> {
-				if (!repository.existsByUrl(product.getUrl())) {
-					repository.save(product);
-					System.out.println("Product added.");
+				if(!product.getTitle().equals("Shop on eBay")){
+					if (!repository.existsByUrl(product.getUrl())) {
+						repository.save(product);
+						System.out.println("Product added.");
+					}
 				}
 			});
 		} catch (Exception e) {
