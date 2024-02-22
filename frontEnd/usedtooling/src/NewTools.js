@@ -29,7 +29,7 @@ const NewTools = () => {
       });
   },[]);
   useEffect(()=>{
-      setBoxes(items.map(item => <ToolBox value={item}/>));
+      setBoxes(items.map(item => <ToolBox key={Math.random()} value={item}/>));
   }, [items]);
 
   function moveLeft(){
@@ -47,7 +47,7 @@ const NewTools = () => {
 
   return (
     <div className="newTools">
-      <a>New Tools</a>
+      <a href='/store'>New Tools</a>
       <div className='tools'>
         <button onClick={moveRight} id='lt'>&lt;</button>
           <div style={{translate: boxPosition+"%", display: 'flex'}}> 

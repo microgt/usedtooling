@@ -20,7 +20,7 @@ public class EmailController {
 
             return ResponseEntity.ok("Message sent successfully!");
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("{There was a problem sending your message, please try again later.}");
+            return ResponseEntity.status(500).body("{There was a problem sending your message, please try again later.}" + e.getMessage());
         }
     }
 }

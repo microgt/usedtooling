@@ -232,12 +232,15 @@ a:link{
   width: 16px;
   height: 16px;
 }
+
 .gallery{
+    height: 600px;
     text-align: center;
 }
 .gallery > .active{
-    height: 600px;
+    max-height: 600px;
     animation: fadeIn 2s;
+    width: 100%;
 }
 
 @keyframes fadeIn {
@@ -390,6 +393,7 @@ button {
 .leftInfo{
     display: flex;
     flex-direction: column;
+    width: 25%;
 }
 .ebayButtons > a{
     text-align: center;
@@ -400,6 +404,7 @@ button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
     width: 100%;
+    cursor: pointer;
 }
 
 #voeb{
@@ -407,7 +412,8 @@ button {
     width: 100%;
 }
 #pdesc{
-    width: 100%;
+    padding-left: 2%;
+    width: 98%;
     height: 512px;
 }
 
@@ -415,7 +421,7 @@ button {
     padding-top: 10%;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
 .filterbar{
@@ -435,6 +441,260 @@ button {
 
 .mobileVisible{
     display: none;
+}
+
+.picgallery{
+    align-items: end;
+    align-items: flex-start;
+    display: flex;
+}
+.picgallery > .active{
+    width: 600px;
+    animation: fadeIn 2s;
+}
+
+.gdots{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-left: 2%;
+    color: rgba(0, 0, 0, 0);
+}
+.gdots>* {
+    flex: 0 0 calc(100% - 10px);
+    max-width: calc(100% - 10px);
+    box-sizing: border-box;
+    padding-bottom: 3%;
+  }
+.gdot{
+  background-color: rgba(255, 255, 255, 0.5); 
+  display: block;
+  width: 128px;
+  height: 128px;
+  cursor: pointer;
+}
+.gdotCurrent{
+  background-color: rgba(255, 255, 255, 0.75); 
+  margin: 0.5%;
+  display: block;
+  width: 128px;
+  height: 128px;
+  border-color: rgba(0, 0, 0, 0.25);
+  border: 2%;
+  border-style: solid;
+  border-radius: 5%;
+}
+.etopInfo{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+
+.equipment{
+    text-align: center;
+}
+.equipment > a{
+    font-size: xx-large;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 100%;
+    display: block;
+    color: darkblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 300%;
+}
+.equipmentcontrols{
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    justify-content: space-evenly;
+    width: auto;
+    display: inline;
+}
+.equipmentcontrols > form{
+    justify-content: center;
+    padding: 2%;
+    width: 100%;
+    vertical-align: middle;
+    display: inline;
+}
+.equipmentcontrols > form > label{
+    padding-left: 2%;
+    padding-right: 1%;
+}
+.equipmentcontrols > a{
+    font-size: large;
+    width: 100%;
+    margin-right: 25%;
+    color: white;
+    background-color: darkblue;
+    padding: 1%;
+}
+.equipment > .equipmentContent{
+    width: auto;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: none;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    text-align: center;
+}
+.equipment > .equipmentContent > .toolBox{
+    padding: 5%;
+    border: none;
+}
+
+.pageControls{
+    justify-content: space-evenly;
+    display: flex;
+    font-size: large;
+    cursor: pointer;
+}
+
+#pdesc > div:nth-child(1) :nth-child(2){
+    text-decoration: underline;
+    color: darkblue;
+    cursor: pointer;
+}
+
+#upSelectBtn{
+    padding: 5%;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;             
+    display: block;
+    text-align: center;
+}
+
+.storeContent > form > *{
+    margin-bottom: 10%;
+}
+#uploadedpics{
+    display: flex;
+    flex-basis: 21%;
+    flex-wrap: wrap;
+    width: 100%;
+}
+#uploadedpics > *{
+    padding: 5%;
+}
+
+.loginform{
+    align-content: center;
+    padding: 5%;
+    text-align: center;
+}
+
+.userform > form{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin: auto;
+
+    border-color: grey;
+    border-style: solid;
+    border: 1%;
+    padding: 2%;
+    border-radius: 2%;
+}
+
+.userform > form > div{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+}
+
+.loginControls{
+    padding: 3%;
+    text-align: center;
+}
+.loginControls > *{
+    cursor: pointer;
+    margin: auto;
+    margin: 1%;
+}
+.userform > form > *{
+    margin-top: 1%;
+    text-align: start;
+}
+
+.userform > form > input[type='submit']{
+    padding: 1%;
+    margin-top: 5%;
+    margin-right: 85%;
+    text-align: center;
+}
+.userform > form > input[type='text'], .userform > form > select, .userform > form > input[type= 'password']{
+    padding: 1%;
+}
+
+.userform > form > div > *{
+    padding: 1%;
+    text-align: start;
+}
+
+.navlogin > a{
+    font-size: x-large;
+    border-radius: 25px/50%;
+    padding: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: black;
+    margin: auto;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    white-space: nowrap;
+}
+
+.userslist{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 50%;
+    gap: 25%;
+}
+
+.userbox{
+    display: flex;
+    margin: 1%;
+    padding: 5%;
+    gap: 50%;
+    width: 100%;
+    place-content: space-between;
+    background-color: lightblue;
+    border-radius: 15px/25%;
+}
+.userbox a{
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: underline;
+    color: darkblue;
+}
+.userinfo{
+    display: flex;
+}
+.usercontrols{
+    display: flex;
+    gap: 25%;
+}
+
+.usrcontorlbar{
+    display: flex;
+    width: 50%;
+    gap: 15%;
+    justify-content: center;
+}
+.usrcontorlbar button{
+    white-space: nowrap;
+    cursor: pointer;
+}
+.usrcontorlbar div{
+    white-space: nowrap;
 }
 
 @media only screen and (max-width: 600px) {
@@ -579,4 +839,5 @@ button {
     .Nav > *, .fixed-nav > *{
         padding: 5%;
     }
+
 }

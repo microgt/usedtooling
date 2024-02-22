@@ -25,7 +25,7 @@ const RiggingServices = () => {
         <p>We are a small company that pays direct attention to our customers needs.</p>
         <p>Our goal is to take the load off the customer by handling there complete project.</p>
         <p>As rigging service professionals, we are dedicated to completing rigging projects safely and on-time.</p>
-        <p>Our licensed Master Riggers, operating engineers, teamster drivers, steamfitters and iron workers are highly experienced and excel at turnkey heavy lifting and moving solutions.</p>
+        <p>Our experienced Master Riggers, operating engineers, teamster drivers, steamfitters and iron workers are highly experienced and excel at turnkey heavy lifting and moving solutions.</p>
         <p>
         Anderson Tooling's Rigging services provide you with complete solutions; From planning to coordination with construction management and general contractors, logistics to implementation, our extensive experience means your next job will be a complete success.
         </p>

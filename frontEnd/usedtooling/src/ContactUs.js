@@ -8,8 +8,10 @@ const ContactUs = () => {
       <div className='contactContent'>
         <div className='contactLeft'>
           <h4>Call us on:</h4>
-            <span className='phoneIcon'>&#9990;</span><a href="tel:+16414696667">
-              Phone: (641)469-6667</a>
+            <p href="tel:+16414696667">
+              <span className='phoneIcon'>&#9990;</span>Phone: (641)469-6667</p>
+            <p href="tel:+16419193937">
+              <span className='phoneIcon'>&#9990;</span>Phone: (641)919-3937</p>
               <div className='contactButton'>
                 <h4>Or send us a message through our contact form:</h4>
                 <a href='/contact' className='emailIcon'>&#128231;</a>

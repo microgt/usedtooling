@@ -43,6 +43,8 @@ public class Main implements CommandLineRunner {
 
     @Scheduled(fixedRate = 60000, initialDelayString = "#{ T(java.lang.Math).round(T(java.lang.Math).random() * 120000) }")    public void PullData(){
         EbayProduct product = Retreiveinfo(productService.GetProductWithMissingBuyButton());
+        if(product == null) System.out.println("Up to date.");
+        if(product == null) return;
         productService.SaveProduct(product);
         System.out.println("Product: " + product.getId() + ", Updated Successfully.");
     }

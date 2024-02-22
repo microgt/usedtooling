@@ -40,7 +40,7 @@ public class DataFetcher {
                 for(Element product : products){
                     EbayProduct p = new EbayProduct();
                     p.setImage(product.select("img").attr("src"));
-                    p.setTitle(product.getElementsByClass("s-item__title").first().select("span").text());
+                    p.setTitle(product.getElementsByClass("s-item__title").first().select("span").text().replaceAll("(?i)new\\s*listing|used", ""));
                     p.setPrice(product.getElementsByClass("s-item__price").first().text());
                     p.setUrl(product.getElementsByClass("s-item__link").attr("href"));
                     listings.add(p);

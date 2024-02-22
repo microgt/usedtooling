@@ -3,6 +3,10 @@ package com.usedtooling.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+
+import java.util.List;
+
 @Entity
 @Table(name = "Products")
 public class EbayProduct {
@@ -23,6 +27,20 @@ public class EbayProduct {
     @Getter@Setter
     @Column(columnDefinition = "VARCHAR(999)")
     private String url;
+    @Getter@Setter
+    @Column(columnDefinition = "VARCHAR(999)")
+    private String buyUrl;
+    @Getter@Setter
+    @Column(columnDefinition = "VARCHAR(999)")
+    private String offerUrl;
+    @Getter@Setter
+    @ElementCollection
+    @Column(columnDefinition = "VARCHAR(999)")
+    @Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+    private List<String> pics;
+    @Getter@Setter
+    @Column(columnDefinition = "VARCHAR(999)")
+    private String description;
 
     @Override
     public int hashCode() {

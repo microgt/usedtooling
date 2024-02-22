@@ -1,0 +1,65 @@
+package com.usedtooling.models;
+
+import com.usedtooling.utils.EquipmentCategoriesAttributeConverter;
+import jakarta.persistence.*;
+import jdk.jfr.Category;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+@Entity
+@Table(name = "equipment")
+@NoArgsConstructor
+public class Equipment {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Getter@Setter
+    private Long id;
+    @Column(columnDefinition = "VARCHAR(999)")
+    @Getter@Setter
+    private String name;
+    @Column(columnDefinition = "VARCHAR(999)")
+    @Getter@Setter
+    @Convert(converter = EquipmentCategoriesAttributeConverter.class)
+    private EquipmentCategories category;
+    @Column(columnDefinition = "VARCHAR(999)")
+    @Getter@Setter
+    private String description;
+    @Getter@Setter
+    private double price;
+    @Getter@Setter
+    @ElementCollection
+    @Column(columnDefinition = "VARCHAR(999)")
+    @Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+    private List<String> pictures;
+
+    public Equipment(String name, EquipmentCategories category, String description, double price){
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null) return false;
+        if(!(obj instanceof Equipment)) return false;
+        Equipment e = (Equipment) obj;
+        if(e.getName().equals(getName())
+        && e.getPrice() == getPrice()
+        && e.getCategory() == getCategory()) return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(getName(), getPrice(), getCategory());
+    }
+}
