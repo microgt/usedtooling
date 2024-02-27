@@ -13,7 +13,7 @@ const NewTools = (eq) => {
   const [pics, setPics] = useState([]);
 
   useEffect(()=>{
-    setPics(eq.equipment.eq.pictures.map(picture => "http://69.18.26.126:8080/loadimg?imageurl=/home/melmatary/Desktop/usedtooling/"+picture.split("../")[1]));
+    setPics(eq.equipment.eq.pictures.map(picture => "http://69.18.26.126:8080/loadimg?imageurl="+picture));
   }, []);
 
   let timer;

@@ -14,11 +14,12 @@ const EditEquipment = () => {
 
   const location = useLocation();
   const [equipment, setEquipment] = useState(location.state?.data || {});
-  const [pics, setpics] = useState([]);
-  useEffect(()=>setpics(equipment.pictures),[equipment]);
+  const [pics, setpics] = useState(equipment.pictures);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
+
+  
   function prepareData(props){
       props.preventDefault();
 
@@ -28,10 +29,18 @@ const EditEquipment = () => {
       formData.append('description', props.target.description.value);
       formData.append('category', props.target.category.value);
       formData.append('price', props.target.price.value);
-      pics.forEach((pic, index) => {
-        formData.append('pics', pic, pic.name);
-      });
-      
+
+      if(pics.length > 0 && !pics[0].name) {
+        const temppics = pics.map((p, i) => new File([p], i, {type: p.type}));
+        temppics.forEach((pic, index) => {
+          formData.append('pics', pic, pic.name);
+        });
+      }else{
+        pics.forEach((pic, index) => {
+          formData.append('pics', pic, pic.name);
+        });
+      }
+
       let timer;
       fetch('http://69.18.26.126:8080/addequipment', {
         method: 'POST',
@@ -47,8 +56,8 @@ const EditEquipment = () => {
       }
   }
 
-  function updatePics(props){
-    setpics([...pics, ...props.target.files]);
+  function updatePics(e){
+    setpics([...pics, ...e.target.files]);
   }
 
   function clearPics(props){
@@ -116,13 +125,15 @@ const EditEquipment = () => {
                     <input type='price' onChange={handleInputChange} name='price' value={equipment.price}/>
                     
                     <label id='upSelectBtn'  htmlFor='fileinput'>Select Pictures</label>
-                    <input id='fileinput' type='file' multiple name='x' accept='image/png, image/jpeg video/mp4' onChange={updatePics} style={{display: 'none'}} />
+                    <input id='fileinput' type='file' multiple name='x' accept='image/png, image/jpeg, video/mp4' onChange={updatePics} onLoad={updatePics} style={{display: 'none'}} />
+                    
+                    <input type='button' onClick={clearPics} value='Clear Pictures' style={{padding:'3%', margin: '2%'}}/>
+                    <input type='submit' style={{padding:'3%', margin: '2%'}} value="Save Changes"/>
+                    
                     <div id='uploadedpics'>
                         {pics.length > 0? <h5>{pics.length + " Items"}</h5> : ""}
                         {pics.map(pic => <img src={URL.createObjectURL(pic)} />)}
                     </div>
-                    <input type='button' onClick={clearPics} value='Clear Pictures' style={{padding:'3%', margin: '2%'}}/>
-                    <input type='submit' style={{padding:'3%', margin: '2%'}} value="Save Changes"/>
                   </form>
                 </div>
                 :

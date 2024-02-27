@@ -103,7 +103,6 @@ public class EquipmentController {
         if(!id.isEmpty() && !id.isBlank()) {
             existingId = Long.parseLong(id);
             equipment.setId(existingId);
-
         }
 
         List<String> pictures =  SaveImages(String.valueOf(existingId != 0? existingId : equipment.hashCode())
@@ -114,16 +113,16 @@ public class EquipmentController {
 
     public List<String> SaveImages(String subDirectoryName, List<MultipartFile> images){
         List<String> results = new ArrayList<>();
-            File uploadDir = new File(UPLOAD_DIR +subDirectoryName);
-            if(!uploadDir.exists()) uploadDir.mkdir();
-            images.forEach(image ->{
-                Path filePath = Path.of(uploadDir.getAbsolutePath() + "/" + image.getOriginalFilename());
-                try {
-                    Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                results.add(filePath.toString());
+        File uploadDir = new File("/home/melmatary/Desktop/usedtooling/equipmentpictures/" +subDirectoryName);
+        if(!uploadDir.exists()) uploadDir.mkdir();
+        images.forEach(image ->{
+            Path filePath = Path.of(uploadDir + "/" + image.getOriginalFilename());
+            try {
+                Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            results.add(filePath.toString());
         });
         return results;
     }

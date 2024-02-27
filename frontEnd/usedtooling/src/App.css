@@ -547,6 +547,12 @@ button {
 .equipment > .equipmentContent > .toolBox{
     padding: 5%;
     border: none;
+    align-items: center;
+    width: 25%;
+}
+
+.toolBox > h3{
+   width: 50%; 
 }
 
 .pageControls{

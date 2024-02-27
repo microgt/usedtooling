@@ -28,8 +28,8 @@ const ToolBox = (props) => {
     d.pictures = await Promise.all(
       props.value.pictures.map(async (p) => {
         const response = await fetch(
-          "http://69.18.26.126:8080/loadimg?imageurl=/home/melmatary/Desktop/usedtooling/" +
-            p.split("../")[1]
+          "http://69.18.26.126:8080/loadimg?imageurl=" +
+            p
         );
         
         if (!response.ok) {
@@ -48,7 +48,7 @@ const ToolBox = (props) => {
     fetch('http://69.18.26.126:8080/deleteequipment', {
       method : 'POST',
       body : formData
-    }).then(response => response.text()).then(text => {alert(text); props.onUpdate()});
+    }).then(response => response.text()).then(props.onUpdate());
   }
 
   function fetchImage(){
@@ -64,11 +64,11 @@ const ToolBox = (props) => {
 
   return (
     <div className="toolBox">
-      <img onClick={navigateToChild} src={"http://69.18.26.126:8080/loadimg?imageurl=/home/melmatary/Desktop/usedtooling/"+props.value.pictures[0].split("../")[1]}/>
+      <img onClick={navigateToChild} src={"http://69.18.26.126:8080/loadimg?imageurl="+props.value.pictures[0]}/>
       
       {
         (getUser() && getUser().role !== 'USER')?
-          <div style={{display: 'flex', justifyContent: 'space-between', fontSize: 'x-large', padding: '15%'}}>
+          <div style={{display: 'flex', fontSize: 'x-large', padding: '5%', gap: '25%', justifyContent: 'center', width: '100%'}}>
             <a className='deletebtn' onClick={deleteEquipment} id={props.value.id}>&#9746;</a>
             <a className='editbtn' onClick={editequipment} style={{color: 'black'}} item={props.value}>&#9874;</a>
           </div>

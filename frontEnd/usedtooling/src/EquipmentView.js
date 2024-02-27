@@ -14,7 +14,7 @@ const Product = () => {
 
   function deleteEquipment(e){
     e.preventDefault();
-    if(window.confirm("Are You Sure You Want To Remove This Item?") == true) confirmDelete(e.target.id);
+    if(window.confirm("Are You Sure You Want To Remove This Item?") == true) confirmDelete(e.target.name);
   }
 
   function confirmDelete(id){
@@ -23,15 +23,15 @@ const Product = () => {
     fetch('http://69.18.26.126:8080/deleteequipment', {
       method : 'POST',
       body : formData
-    }).then(response => response.text()).then(text => {alert(text); navigate("/equipment");});
+    }).then(response => response.text()).then(text => navigate("/equipment"));
   }
 
   async  function editequipment(){
     equipment.pictures = await Promise.all(
       equipment.pictures.map(async (p) => {
         const response = await fetch(
-          "http://69.18.26.126:8080/loadimg?imageurl=/home/melmatary/Desktop/usedtooling/" +
-            p.split("../")[1]
+          "http://69.18.26.126:8080/loadimg?imageurl=" +
+            p
         );
         
         if (!response.ok) {
@@ -70,22 +70,21 @@ const Product = () => {
                             
                             
                         </div>
+                        <div id='pdesc' style={{marginTop: '10%'}}>
+                          <div>
+                            <a>Item category:</a> <a id={equipment.category} onClick={listCategory} style={{cursor: 'pointer'}}>{equipment.category.split('_').map(x=>x.substring(0,1)+x.substring(1).toLowerCase()).join(' ')}</a>
+                          </div>
+                          <div>
+                            <h3>Description:</h3><pre>{equipment.description}</pre>
+                          </div>
+                      </div>
                     </div>
-                    
                     <Gallery equipment={{eq: equipment}}/>
                 </div>
                 <div>
                   
                 </div>
-                <div id='pdesc'>
-                  <div>
-                    <a>Item category:</a> <a id={equipment.category} onClick={listCategory} style={{cursor: 'pointer'}}>{equipment.category.split('_').map(x=>x.substring(0,1)+x.substring(1).toLowerCase()).join(' ')}</a>
-                  </div>
-                  <div>
-                    <h4>Description:</h4><p>{equipment.description}</p>
-                  </div>
-                  
-                </div>
+                
             </div>
           <Footer />
     </div>

@@ -40,8 +40,8 @@ const AddEquipment = () => {
       }
   }
 
-  function updatePics(props){
-    setpics([...pics, ...props.target.files]);
+  function updatePics(e){
+    setpics([...pics, ...e.target.files]);
   }
 
   function clearPics(props){
@@ -88,13 +88,14 @@ const AddEquipment = () => {
                     <label for='price'>Price: </label>
                     <input required type='price' name='price'/>
                     <label id='upSelectBtn' htmlFor='fileinput'>Select Media</label>
-                    <input id='fileinput' type='file' multiple name='x' accept='image/png, image/jpeg, video/mp4' onChange={updatePics} style={{display: 'none'}} />
+                    <input required id='fileinput' type='file' multiple name='x' accept='image/png, image/jpeg, video/mp4' onChange={updatePics} style={{display: 'none'}} />
+                    <input type='button' onClick={clearPics} value='Clear' style={{padding:'3%', margin: '2%'}} />
+                    <input type='submit' value="Add Equipment" style={{padding:'3%', margin: '2%'}} />
                     <div id='uploadedpics'>
                         {pics.length > 0? <h5>{pics.length + " Items"}</h5> : ""}
                         {pics.map(pic => <img src={URL.createObjectURL(pic)} />)}
                     </div>
-                    <input type='button' onClick={clearPics} value='Clear' style={{padding:'3%', margin: '2%'}} />
-                    <input type='submit' value="Add Equipment" style={{padding:'3%', margin: '2%'}} />
+                    
                   </form>
                 </div>
                 :
