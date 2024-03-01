@@ -71,6 +71,9 @@ const Nav = ({ onInputChange }) => {
       {
           (getUser() && (getUser().role === 'OWNER' || getUser().role === 'EDITOR'))? <a href='/users' className='mobileHidden'><h2>Users</h2></a> : ''
       }
+      {
+          (getUser() && (getUser().role === 'OWNER'))? <a href='/views' className='mobileHidden'><h2>Views</h2></a> : ''
+      }
       <a className='mobileHidden' href='/#rigging'><h2>Rigging Services</h2></a>
       <a className='mobileHidden' href='/#about'><h2>About Us</h2></a>
       <a className='mobileHidden' href='/#contact'><h2>Contact Us</h2></a>
@@ -82,6 +85,9 @@ const Nav = ({ onInputChange }) => {
         <a href='/equipment' onClick={onMenuPress}><h2>Equipment</h2></a>
         {
           (getUser() && (getUser().role == 'OWNER' || getUser().role == 'EDITOR'))? <a href='/users' onClick={onMenuPress}><h2>Users</h2></a> : ''
+        }
+        {
+          (getUser() && (getUser().role == 'OWNER'))? <a href='/views' onClick={onMenuPress}>Views</a> : ''
         }
         <a href='/#rigging' onClick={onMenuPress}><h2>Rigging Services</h2></a>
         <a href='/#about' onClick={onMenuPress}><h2>About Us</h2></a>

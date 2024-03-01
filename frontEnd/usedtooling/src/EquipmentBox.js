@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import EditEquipment from './EditEquipment';
 
 const ToolBox = (props) => {
-  const dataToSend = { message: 'Hello from Parent!' };
   const [newImg, setNewImg] = useState('');
   const navigate = useNavigate();
 
@@ -77,8 +76,8 @@ const ToolBox = (props) => {
       }
       
       
-      <h4 >SKU: {props.value.id}</h4>
-      <h3>{props.value.name}</h3>
+      <h4 onClick={navigateToChild}>SKU: {props.value.id}</h4>
+      <h3 onClick={navigateToChild}>{props.value.name}</h3>
       <h3 onClick={listCategory} id={props.value.category}>{props.value.category.split('_').map(x=> x.substring(0,1) + x.substring(1).toLowerCase()).join(' ')}</h3>
       <h3 onClick={navigateToChild}>{'$'+props.value.price}</h3>
       <button onClick={navigateToChild}>View Equipment</button>

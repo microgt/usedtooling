@@ -702,6 +702,72 @@ button {
 .usrcontorlbar div{
     white-space: nowrap;
 }
+.viewdisplay{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+.view{
+    display: flex;
+    gap: 10%;
+    padding: 1%;
+    justify-self: center;
+    white-space: nowrap;
+}
+.view > *{
+    flex: 1;
+    padding: 10px;
+    max-width: 100px;
+    cursor: pointer;
+}
+.view link{
+    flex: 1;
+    padding: 10px;
+    max-width: 100px;
+    cursor: pointer;
+    color: black;
+}
+.viewcontrols{
+    display: flex;
+    gap: 10%;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 80%;
+    place-items: center;
+    text-align-last: center;
+    justify-content: center;
+}
+.viewcontrols > *{
+    display: flex;
+    height: fit-content;
+    gap: 1%;
+    white-space: nowrap;
+    align-items: center;
+}
+.clearFiltersBtn{
+    all: initial;
+    padding: 5%;
+    background-color: darkred;
+    color: white;
+    border-radius: 20%/50%;
+    white-space: nowrap;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.Views{
+    width: 100%;
+    justify-content: center;
+}
+.Views > a{
+    color: darkblue;
+    font-size: xxx-large;
+    font-weight: bolder;
+    padding: 5%;
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
 
 @media only screen and (max-width: 600px) {
     .newTools{

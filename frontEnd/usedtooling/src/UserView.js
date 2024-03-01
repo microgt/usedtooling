@@ -99,7 +99,7 @@ const UserView = () => {
     fetch('http://69.18.26.126:8080/deleteuser', {
       method : 'POST',
       body : formData
-    }).then(response => response.text()).then(text => {alert(text); logout();});
+    }).then(response => response.text()).then(text => {logout();});
   }
 
   function logout(){
@@ -143,6 +143,8 @@ const UserView = () => {
                     <input title='Please Enter a Valid Phone Number' pattern="[0-9]{10}" required onChange={handleOnChange} disabled={!canEdit} type='text' value={uinfo.phone} name='phone'/>
                     <label htmlFor ='uname'>Username: </label>
                     <input title='User Name Must Consist of At Lease 6 Characters' pattern="^[a-zA-Z0-9]{6,}$" required disabled type='text' value={uinfo.uname} name='uname' />
+                    <label htmlFor='jdate'>Date Joined: </label>
+                    <input disabled type='text' value={usr.joinDate} name='jdate' />
                     {
                       canEdit?
                       <div>

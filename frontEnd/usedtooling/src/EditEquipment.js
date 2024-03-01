@@ -19,7 +19,7 @@ const EditEquipment = () => {
   const navigate = useNavigate();
 
 
-  
+
   function prepareData(props){
       props.preventDefault();
 
@@ -47,13 +47,25 @@ const EditEquipment = () => {
         body: formData
       }).then(response => response.text()).then(res => {
         setMessage(res + ", Redirecting....");
-        timer = setTimeout(redirect, 2000);
+        timer = setTimeout(redirect, 1000);
       });
 
-      function redirect(){
+      async function redirect(){
         clearTimeout(timer);
-        navigate("/equipment");
+        const eq = await handleSearch(equipment.id);
+        navigate("/equipmentview", {state: {data: eq}});
       }
+  }
+
+  function handleSearch(id){
+    let p = fetch('http://69.18.26.126:8080/esearch?esterm='+id
+    ,{method: 'GET',
+      mode: 'cors',
+      headers: {
+      'Content-Type': 'application/json',
+  }}).then(response => response.json())
+  .then(res => res[0]);
+  return p;
   }
 
   function updatePics(e){
@@ -90,7 +102,7 @@ const EditEquipment = () => {
           <Header />
           <Nav />
           <div className='ContactForm'>
-            {message === ''? <a>New Equipment</a> : ''}
+            {message === ''? <a>Edit Equipment</a> : ''}
 
               {message === ''? 
                 <div className='storeContent'>

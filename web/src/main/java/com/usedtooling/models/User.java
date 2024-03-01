@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @NoArgsConstructor
 @Entity
 public class User {
@@ -30,6 +33,8 @@ public class User {
     private String password;
     @Getter@Setter
     private UserRoles role;
+    @Getter
+    private String joinDate;
 
     public User(String firstName, String lastName, String userName, String email, String phone, String password, UserRoles role){
         this.firstName = firstName;
@@ -39,5 +44,11 @@ public class User {
         this.phone = phone;
         this.password = password;
         this.role = role;
+        this.joinDate = calculateJoinDate(LocalDateTime.now());
+    }
+
+    public String calculateJoinDate(LocalDateTime dateJoined){
+        DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss a");
+        return  dateJoined.format(formattedDate);
     }
 }

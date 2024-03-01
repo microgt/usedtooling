@@ -1,15 +1,69 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import fbIcon from './facebook.png';
 import ytIcon from './youtube.png';
 import './App.css'
 
 const Footer = () => {
+
+  function registerview() {
+    let longitude;
+    let latitude;
+  
+    const getLocation = () => {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            longitude = position.coords.latitude;
+            latitude = position.coords.longitude;
+            resolve();
+          },
+          (error) => {
+            //console.error('Error getting location:', error.message);
+            reject();
+          }
+        );
+      });
+    };
+  
+    getLocation()
+      .then(() => {  
+        const formData = new FormData();
+        formData.append('lon', longitude ? longitude : null);
+        formData.append('lat', latitude ? latitude : null);
+        formData.append('url', window.location.href);
+        formData.append('agent', navigator.userAgent);
+        formData.append('user', getUser() ? getUser().userName : null);
+  
+        fetch('http://69.18.26.126:8080/registerview', { method: 'post', body: formData });
+      })
+      .catch(() => {
+        const formData = new FormData();
+        formData.append('lon', longitude ? longitude : null);
+        formData.append('lat', latitude ? latitude : null);
+        formData.append('url', window.location.href);
+        formData.append('agent', navigator.userAgent);
+        formData.append('user', getUser() ? getUser().userName : null);
+      });
+  }
+    
+    useEffect(()=>{registerview();}, []);
+    
+  const getUser = () => {
+    return JSON.parse(window.localStorage.getItem('auth_user'));
+  };
+
   return (
     <div className="Footer">
       <div className='footerLinks'>
         <a href="/">Home</a>
         <a href='/store'>Store</a>
         <a href='/equipment'>Equipment</a>
+        {
+          (getUser() && (getUser().role == 'OWNER' || getUser().role == 'EDITOR'))? <a href='/users'>Users</a> : ''
+        }
+        {
+          (getUser() && (getUser().role == 'OWNER'))? <a href='/views'>Views</a> : ''
+        }
         <a href='/#rigging'>Rigging Services</a>
         <a href='/#about'>About Us</a>
         <a href='/#contact'>Contact Us</a>

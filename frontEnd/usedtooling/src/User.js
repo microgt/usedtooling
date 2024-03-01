@@ -60,7 +60,7 @@ const User = (uinfo) => {
     fetch('http://69.18.26.126:8080/deleteuser', {
       method : 'POST',
       body : formData
-    }).then(response => response.text()).then(text => {alert(text); window.location.reload();});
+    }).then(response => response.text()).then(text => {window.location.reload();});
   }
 
   return (

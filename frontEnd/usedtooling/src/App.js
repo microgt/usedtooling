@@ -11,6 +11,7 @@ import LoginForm from './LoginForm.js';
 import Users from './Users.js';
 import UserView from './UserView.js';
 import AddUser from './AddUser.js';
+import Views from './Views.js';
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Route path='/users' element={<Users/>} />
         <Route path='/userview' element={<UserView/>} />
         <Route path='/adduser' element={<AddUser />} />
+        <Route path='/views' element={<Views />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

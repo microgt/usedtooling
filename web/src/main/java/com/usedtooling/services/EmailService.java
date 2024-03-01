@@ -18,4 +18,13 @@ public class EmailService {
 
         mailSender.send(email);
     }
+
+    public void sendConfirmationEmail(String contact, String subject, String body){
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(contact);
+        email.setSubject(subject);
+        email.setText(body);
+
+        mailSender.send(email);
+    }
 }
