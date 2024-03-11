@@ -67,7 +67,7 @@ const Views = () => {
       if(!a.lon || filter[1] === 'null, null') return false;
       const coordinates = {latitude: a.lat, longitude: a.lon};
       const bCoords = filter[1].split(', ');
-      const baseCoordinates = {latitude: bCoords[1], longitude: bCoords[0]};
+      const baseCoordinates = {latitude: bCoords[0], longitude: bCoords[1]};
       const distance = haversineDistance(baseCoordinates, coordinates);
       return distance <= GEO_DISTANCE;
     }
