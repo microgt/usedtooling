@@ -32,9 +32,9 @@ const Views = () => {
       <a title={formatAgent(v.agent)} name='Device' onClick={updateFilter}>{formatAgent(v.agent)}</a>
       <a title={v.user? v.user.userName : 'None'} name='Username' onClick={updateFilter}>{v.user? v.user.userName : 'None'}</a>
       <div style={{display:'flex', gap:'15%'}}>
-          <a onClick={updateFilter} name='Distance'>{(v.lon != null)? v.lat + ", " + v.lon : 'Unavailable'}</a>
+          <a onClick={updateFilter} name='Distance'>{(v.lon != null)? v.lon + ", " + v.lat : 'Unavailable'}</a>
           {(v.lon != null)?
-          <a style={{color:'darkred'}} href={(v.lon != null)?'https://www.openstreetmap.org/#map=18/'+ v.lat +'/'+ v.lon : ''} target={(v.lon != null)?'_blank' : ''}>&#10687;</a> : ''}
+          <a style={{color:'darkred'}} href={(v.lon != null)?'https://www.openstreetmap.org/#map=18/'+ v.lon +'/'+ v.lat : ''} target={(v.lon != null)?'_blank' : ''}>&#10687;</a> : ''}
       </div>
       <a title={v.country} name='Country' onClick={updateFilter}>{v.country}</a>
       <a title={v.regionName} name='Region' onClick={updateFilter}>{v.regionName}</a>
@@ -67,7 +67,7 @@ const Views = () => {
       if(!a.lon || filter[1] === 'null, null') return false;
       const coordinates = {latitude: a.lat, longitude: a.lon};
       const bCoords = filter[1].split(', ');
-      const baseCoordinates = {latitude: bCoords[0], longitude: bCoords[1]};
+      const baseCoordinates = {latitude: bCoords[1], longitude: bCoords[0]};
       const distance = haversineDistance(baseCoordinates, coordinates);
       return distance <= GEO_DISTANCE;
     }
