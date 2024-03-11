@@ -48,11 +48,11 @@ const NewTools = () => {
     <div className="newTools">
       <a href='/store'>New Tools</a>
       <div className='tools'>
-        <button onClick={moveLeft} id='lt'>&lt;</button>
+        <button onClick={moveRight} id='lt'>&lt;</button>
           <div id='newToolsContainer' style={{overflow: 'scroll', display: 'flex'}}> 
             {boxes}
           </div>
-        <button onClick={moveRight} id='gt'>&gt;</button>
+        <button onClick={moveLeft} id='gt'>&gt;</button>
       </div>
     </div>
   );

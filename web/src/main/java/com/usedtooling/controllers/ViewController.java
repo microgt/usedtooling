@@ -138,8 +138,8 @@ public class ViewController {
 
         try {
             JsonNode jsonNode = objectMapper.readTree(jsonResponse);
-            result.put("lon",jsonNode.path("lon").asText());
-            result.put("lat",jsonNode.path("lat").asText());
+            result.put("lon",jsonNode.path("lat").asText());
+            result.put("lat",jsonNode.path("lon").asText());
             result.put("country",jsonNode.path("country").asText());
             result.put("regionName",jsonNode.path("regionName").asText());
             result.put("city",jsonNode.path("city").asText());
