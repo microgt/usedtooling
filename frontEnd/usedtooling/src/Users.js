@@ -30,7 +30,7 @@ const Users = () => {
 
 
   async function getUsers(){
-    await fetch('http://69.18.26.126:8080/allusers?token=' + getAuthToken()).then(response => response.json()).then(res => {
+    await fetch('https://www.usedtooling.com/api/allusers?token=' + getAuthToken()).then(response => response.json()).then(res => {
       if(res && res.length > 0){
         setBoxes(res.filter(f => f.userName !== '')
         //search
@@ -39,7 +39,7 @@ const Users = () => {
         .sort((usr1, usr2) => sortHelper(usr1, usr2))
         //filter
         .filter(usr => pFilter === 'all'? true : filterHelper(usr))
-        .map(u => <User value={u}/>))
+        .map(u => <User key={Math.random()} value={u}/>))
       }else{
         redirect('/')
       }

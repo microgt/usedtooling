@@ -42,7 +42,7 @@ const EditEquipment = () => {
       }
 
       let timer;
-      fetch('http://69.18.26.126:8080/addequipment', {
+      fetch('https://www.usedtooling.com/api/addequipment', {
         method: 'POST',
         body: formData
       }).then(response => response.text()).then(res => {
@@ -58,7 +58,7 @@ const EditEquipment = () => {
   }
 
   function handleSearch(id){
-    let p = fetch('http://69.18.26.126:8080/esearch?esterm='+id
+    let p = fetch('https://www.usedtooling.com/api/esearch?esterm='+id
     ,{method: 'GET',
       mode: 'cors',
       headers: {
@@ -108,12 +108,12 @@ const EditEquipment = () => {
                 <div className='storeContent'>
                   <form onSubmit={prepareData}>
                     <h3>SKU: {equipment.id}</h3>
-                    <label for='name'>Name: </label>
+                    <label htmlFor='name'>Name: </label>
                     <input required type='text' onChange={handleInputChange} name='name' value={equipment.name}/>
-                    <label for='description'>Description: </label>
+                    <label htmlFor='description'>Description: </label>
                     <textarea required type='text' rows="15" cols="100" onChange={handleInputChange} placeholder='description' name='description' value={equipment.description}/>
                     
-                    <label for='category'>Category: </label>
+                    <label htmlFor='category'>Category: </label>
                     <select required name='category' onChange={handleInputChange} value={equipment.category}>
                       <option value='VERTICAL_LATHES'>Vertical Lathes</option>
                       <option value='VERTICAL_BORING_MILLS'>Vertical Boring Mills</option>
@@ -133,18 +133,18 @@ const EditEquipment = () => {
                       <option value='ENGINE_LATHES'>Engine Lathes</option>
                     </select>
 
-                    <label for='price'>Price: </label>
+                    <label htmlFor='price'>Price: </label>
                     <input type='price' onChange={handleInputChange} name='price' value={equipment.price}/>
                     
                     <label id='upSelectBtn'  htmlFor='fileinput'>Select Pictures</label>
                     <input id='fileinput' type='file' multiple name='x' accept='image/png, image/jpeg, video/mp4' onChange={updatePics} onLoad={updatePics} style={{display: 'none'}} />
                     
-                    <input type='button' onClick={clearPics} value='Clear Pictures' style={{padding:'3%', margin: '2%'}}/>
-                    <input type='submit' style={{padding:'3%', margin: '2%'}} value="Save Changes"/>
+                    <input type='button' onClick={clearPics} value='Clear Pictures'/>
+                    <input type='submit' value="Save Changes"/>
                     
                     <div id='uploadedpics'>
                         {pics.length > 0? <h5>{pics.length + " Items"}</h5> : ""}
-                        {pics.map(pic => <img src={URL.createObjectURL(pic)} />)}
+                        {pics.map(pic => <img key={Math.random()} src={URL.createObjectURL(pic)} />)}
                     </div>
                   </form>
                 </div>

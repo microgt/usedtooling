@@ -79,7 +79,7 @@ const Nav = ({ onInputChange }) => {
       <a className='mobileHidden' href='/#contact'><h2>Contact Us</h2></a>
 
       <div className='mobileVisible menum' id={menu?'menuHidden' : 'mobilem'}>
-        <a style={{'fontSize': 'xx-large', 'padding': '5%'}} className='mobileVisible' onClick={onMenuPress}>&lt;</a>
+        <a style={{'fontSize': 'xx-large'}} className='mobileVisible' onClick={onMenuPress}>&lt;</a>
         <a href='/' onClick={onMenuPress}><h2>Home</h2></a>
         <a href='/store' onClick={onMenuPress}><h2>Store</h2></a>
         <a href='/equipment' onClick={onMenuPress}><h2>Equipment</h2></a>
@@ -87,11 +87,18 @@ const Nav = ({ onInputChange }) => {
           (getUser() && (getUser().role == 'OWNER' || getUser().role == 'EDITOR'))? <a href='/users' onClick={onMenuPress}><h2>Users</h2></a> : ''
         }
         {
-          (getUser() && (getUser().role == 'OWNER'))? <a href='/views' onClick={onMenuPress}>Views</a> : ''
+          (getUser() && (getUser().role == 'OWNER'))? <a href='/views' onClick={onMenuPress}><h2>Views</h2></a> : ''
         }
         <a href='/#rigging' onClick={onMenuPress}><h2>Rigging Services</h2></a>
         <a href='/#about' onClick={onMenuPress}><h2>About Us</h2></a>
         <a href='/#contact' onClick={onMenuPress}><h2>Contact Us</h2></a>
+
+        <div className='navlogin'>
+        {
+          getUser()? <a> <span onClick={editUser} style={{cursor: 'pointer'}}>Welcome {getUser().firstName}!</span> <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span> <span style={{cursor: 'pointer'}} onClick={logout}>Logout</span> </a> :
+          <a style={{cursor: 'pointer', paddingLeft: '35%', paddingRight: '35%', paddingTop: '15%', paddingBottom:'15%'}} href='/login'>Login</a>
+        }
+      </div>
       </div>
 
       <div id={menu?'' : 'menuHidden'} className='search'>
@@ -99,11 +106,13 @@ const Nav = ({ onInputChange }) => {
         <img src={searchIcon}/>
       </div>
 
-      <div class='navlogin'>
-        {
-          getUser()? <a> <a onClick={editUser} style={{cursor: 'pointer'}}>Welcome {getUser().firstName}!</a> <a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a> <a style={{cursor: 'pointer'}} onClick={logout}>Logout</a> </a> :
-          <a style={{cursor: 'pointer', paddingLeft: '35%', paddingRight: '35%', paddingTop: '15%', paddingBottom:'15%'}} href='/login'>Login</a>
-        }
+      <div className='mobileHidden'>
+        <div className='navlogin'>
+          {
+            getUser()? <a> <span onClick={editUser} style={{cursor: 'pointer'}}>Welcome {getUser().firstName}!</span> <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span> <span style={{cursor: 'pointer'}} onClick={logout}>Logout</span> </a> :
+            <a style={{cursor: 'pointer', paddingLeft: '35%', paddingRight: '35%', paddingTop: '15%', paddingBottom:'15%'}} href='/login'>Login</a>
+          }
+        </div>
       </div>
     </div>
   );

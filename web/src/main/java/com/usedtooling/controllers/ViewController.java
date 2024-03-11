@@ -1,5 +1,8 @@
 package com.usedtooling.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.usedtooling.models.User;
 import com.usedtooling.models.UserRoles;
 import com.usedtooling.models.View;
@@ -13,23 +16,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.swing.text.html.Option;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
+@RequestMapping("/api")
 public class ViewController {
     private LocalDateTime callTimeStamp = LocalDateTime.now();
     private String lastIpCall = "";
@@ -40,7 +43,6 @@ public class ViewController {
 
 
 
-    @CrossOrigin(origins = "*")
     @Transactional
     @PostMapping("/views")
     public Optional<List<View>> getAllViews(@RequestParam String token, @RequestParam String user, @RequestParam String date, @RequestParam String dateTo){
@@ -69,19 +71,16 @@ public class ViewController {
 
 
 
-
-    @CrossOrigin(origins = "*")
     @Transactional
     @PostMapping("/registerview")
     public ResponseEntity<View> registerView(@RequestParam String lon
             , @RequestParam String lat
             , @RequestParam String url
             , @RequestParam String agent
+            , @RequestParam String ip
             , @RequestParam String user
             , HttpServletRequest request){
         View view = new View();
-        if(lon != null && !lon.isEmpty() && !lon.isBlank() && !lon.equals("undefined") && !lon.equals("null")) view.setLon(lon);
-        if(lat != null && !lat.isEmpty() && !lat.isBlank() && !lat.equals("undefined") && !lat.equals("null") ) view.setLat(lat);
 
         if(user != null && !user.isEmpty() && !user.isBlank() && !user.equals("undefined") && !user.equals("null")) {
             try {
@@ -93,12 +92,30 @@ public class ViewController {
 
         view.setUrl(url);
         view.setAgent(agent);
-        view.setIp(request.getRemoteAddr());
+        view.setIp(ip);
         view.setDateTime(LocalDateTime.now());
 
-        boolean save = (!view.getIp().equals(lastIpCall))? true : timeCheckUtility(view.getDateTime(), callTimeStamp);
+        HashMap<String, String> location = getLocationInfo(ip);
+
+        if(lon != null && !lon.isEmpty() && !lon.isBlank() && !lon.equals("undefined") && !lon.equals("null")){
+            view.setLon(lon);
+        }else{
+            view.setLon(location.get("lon"));
+        }
+        if(lat != null && !lat.isEmpty() && !lat.isBlank() && !lat.equals("undefined") && !lat.equals("null") ){
+            view.setLat(lat);
+        }else {
+            view.setLat(location.get("lat"));
+        }
+
+        view.setCountry(location.get("country"));
+        view.setRegionName(location.get("regionName"));
+        view.setCity(location.get("city"));
+        view.setZip(location.get("zip"));
+
+        boolean save = !view.getIp().equals(lastIpCall) || timeCheckUtility(view.getDateTime(), callTimeStamp);
         callTimeStamp = view.getDateTime();
-        lastIpCall = request.getRemoteAddr();
+        lastIpCall = ip;
         if(save){
             view = viewService.saveView(view);
         }
@@ -109,5 +126,28 @@ public class ViewController {
         ZonedDateTime viewTimeZone = from.atZone(ZoneId.of("America/Chicago"));
         ZonedDateTime callTimeZone = to.atZone(ZoneId.of("America/Chicago"));
        return viewTimeZone.toInstant().toEpochMilli() - callTimeZone.toInstant().toEpochMilli() > 1000;
+    }
+
+    public HashMap<String, String> getLocationInfo(String ip){
+        HashMap<String, String> result = new HashMap<>();
+        String url = "http://ip-api.com/json/" + ip;
+
+        RestTemplate restTemplate = new RestTemplate();
+        String jsonResponse = restTemplate.getForObject(url, String.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            JsonNode jsonNode = objectMapper.readTree(jsonResponse);
+            result.put("lon",jsonNode.path("lon").asText());
+            result.put("lat",jsonNode.path("lat").asText());
+            result.put("country",jsonNode.path("country").asText());
+            result.put("regionName",jsonNode.path("regionName").asText());
+            result.put("city",jsonNode.path("city").asText());
+            result.put("zip",jsonNode.path("zip").asText());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 }

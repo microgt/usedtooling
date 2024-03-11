@@ -20,10 +20,10 @@ const StarContainer = () => {
       const stars = ()=>{
         let s = [];
         for(let i = 0; i < blueStarCount; i++){
-          s.push(<span className='blueStar'>&#9733;</span>);
+          s.push(<span key={Math.random()} className='blueStar'>&#9733;</span>);
         }
         for(let i = 0; i < greyStarCount; i++){
-          s.push(<span className='greyStar'>&#9733;</span>);
+          s.push(<span key={Math.random()} className='greyStar'>&#9733;</span>);
         }
         return s;
       };

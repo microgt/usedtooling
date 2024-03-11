@@ -32,7 +32,7 @@ const RiggingServices = () => {
       </div>
       <img src={r1}/>
       <img src={r2}/>
-      <iframe width="960" height="720" src="https://www.youtube.com/embed/o_4GYKxqFgM?si=78VWY8XHzM0T7uDn" title="Component Transport Demo" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe width="960" height="720" src="https://www.youtube.com/embed/o_4GYKxqFgM?si=78VWY8XHzM0T7uDn" title="Component Transport Demo" frameBorder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
     </div>
   );
 }

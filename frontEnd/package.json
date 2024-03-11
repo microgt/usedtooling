@@ -9,5 +9,8 @@
     "react-player": "^2.14.1",
     "react-router-dom": "^6.21.0",
     "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "react-app-rewired": "^2.2.1"
   }
 }

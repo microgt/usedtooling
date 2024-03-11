@@ -5,9 +5,11 @@ import './App.css'
 
 const Footer = () => {
 
-  function registerview() {
+ function registerview() {
     let longitude;
     let latitude;
+
+    let ip = async ()=>{return fetch('https://api.ipify.org').then(response => response.text());};
   
     const getLocation = () => {
       return new Promise((resolve, reject) => {
@@ -18,7 +20,8 @@ const Footer = () => {
             resolve();
           },
           (error) => {
-            //console.error('Error getting location:', error.message);
+            longitude = null;
+            latitude = null;
             reject();
           }
         );
@@ -27,23 +30,25 @@ const Footer = () => {
   
     getLocation()
       .then(() => {  
-        const formData = new FormData();
-        formData.append('lon', longitude ? longitude : null);
-        formData.append('lat', latitude ? latitude : null);
-        formData.append('url', window.location.href);
-        formData.append('agent', navigator.userAgent);
-        formData.append('user', getUser() ? getUser().userName : null);
-  
-        fetch('http://69.18.26.126:8080/registerview', { method: 'post', body: formData });
+        register();
       })
       .catch(() => {
+        register();
+      });
+
+
+
+      async function register(){
+        const ipa = await(ip());
         const formData = new FormData();
-        formData.append('lon', longitude ? longitude : null);
-        formData.append('lat', latitude ? latitude : null);
+        formData.append('lon', longitude);
+        formData.append('lat', latitude);
         formData.append('url', window.location.href);
         formData.append('agent', navigator.userAgent);
-        formData.append('user', getUser() ? getUser().userName : null);
-      });
+        formData.append('ip', ipa);
+        formData.append('user', getUser() ? getUser().userName : 'null');
+        fetch('https://www.usedtooling.com/api/registerview', { method: 'post', body: formData });
+      }
   }
     
     useEffect(()=>{registerview();}, []);

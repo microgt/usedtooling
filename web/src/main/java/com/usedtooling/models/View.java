@@ -33,4 +33,12 @@ public class View {
     private User user = null;
     @Getter@Setter
     private LocalDateTime dateTime;
+    @Getter@Setter
+    private String country;
+    @Getter@Setter
+    private String regionName;
+    @Getter@Setter
+    private String city;
+    @Getter@Setter
+    private String zip;
 }

@@ -26,7 +26,7 @@ const Equipment = () => {
   }, [location.state]);
   
   useEffect(()=>{
-    fetch('http://69.18.26.126:8080/allequipment?start='+ startPage+'&end=5',{method: 'GET',
+    fetch('https://www.usedtooling.com/api/allequipment?start='+ startPage+'&end=5',{method: 'GET',
   mode: 'cors',
   headers: {
       'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const Equipment = () => {
   },[startPage, rando]);
   
   useEffect(()=>{
-    setBoxes(equipment.map(e=><EquipmentBox value={e} onUpdate={updatePage} />));
+    setBoxes(equipment.map(e=><EquipmentBox value={e} key={Math.random()} onUpdate={updatePage} />));
   }, [equipment]);
 
   function moveForward(){
@@ -67,7 +67,7 @@ const Equipment = () => {
     terms.push('sort='+ sort);
 
     const phrase = terms.length > 1? terms.join('&&') : terms[0];
-    fetch('http://69.18.26.126:8080/esearch?'+phrase
+    fetch('https://www.usedtooling.com/api/esearch?'+phrase
     ,{method: 'GET',
       mode: 'cors',
       headers: {
@@ -109,7 +109,7 @@ const Equipment = () => {
                 <form onSubmit={handleSearch}>
                   <input type='text' name='esterm' onClick={resetSort} value={searchTerm} onChange={handleInputChange} placeholder='Search Equipment'/>
                   <input type='submit' value='Search'/>
-                  <label for='category'>Equipment Category: </label>
+                  <label htmlFor='category'>Equipment Category: </label>
                   <select name='category' onClick={resetSort} value={initialVAlue} onChange={handleSearch}>
                       <option value='ALL'>All Equipment</option>
                       <option value='VERTICAL_LATHES'>Vertical Lathes</option>
@@ -129,7 +129,7 @@ const Equipment = () => {
                       <option value='BAND_SAWS'>Band Saws</option>
                       <option value='ENGINE_LATHES'>Engine Lathes</option>
                 </select>
-                <label for='sort'>Sort By: </label>
+                <label htmlFor='sort'>Sort By: </label>
                 <select name='sort' value={sort} onChange={handleSort}>
                       <option value='datenew'>Date Added (Newest First)</option>
                       <option value='dateold'>Date Added (Oldest First)</option>

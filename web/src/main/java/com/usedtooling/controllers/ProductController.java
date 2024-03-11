@@ -7,10 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
 import java.io.IOException;
@@ -18,21 +15,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api")
 public class ProductController {
     @Autowired
     ProductService productService;
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/getnew")
     public Optional<List<EbayProduct>> getAllProducts(@RequestParam(defaultValue = "0") String start, @RequestParam(defaultValue = "20") String end){
         return Optional.of(productService.getAllProducts(Integer.parseInt(start), Integer.parseInt(end)).getContent());
     }
-    @CrossOrigin(origins = "*")
     @GetMapping("/search")
     public Optional<List<EbayProduct>> search(@RequestParam(defaultValue = "") String q){
         return  productService.findProductsByTitle(q);
     }
-    @CrossOrigin(origins = "*")
     @GetMapping("/getimage")
     public String updateImageUrl(@RequestParam String pid){
         if(pid.isEmpty() || pid.isBlank()) return "";
@@ -51,7 +46,6 @@ public class ProductController {
         productService.UpdateProduct(product);
         return product.getImage();
     }
-    @CrossOrigin(origins = "*")
     @GetMapping("/product")
     public Optional<ProductInfo> getProduct(@RequestParam String purl){
         ProductInfo info = new ProductInfo();

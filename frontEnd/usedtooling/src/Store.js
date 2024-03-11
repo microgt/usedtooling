@@ -39,9 +39,9 @@ const Store = () => {
     
     const url = function () {
       if(q.length <= 0) {
-        return'http://69.18.26.126:8080/getnew?start='+start+'&end='+end;
+        return'https://www.usedtooling.com/api/getnew?start='+start+'&end='+end;
       }else{
-        return'http://69.18.26.126:8080/search?q=' + q;
+        return'https://www.usedtooling.com/api/search?q=' + q;
       }
     }();
     fetch(url, {
@@ -88,7 +88,7 @@ const Store = () => {
           break;
       }
     })
-      .map(item => <ToolBox value={item}/>));
+      .map(item => <ToolBox key={Math.random()} value={item}/>));
   }, [items, filter]);
 
   window.addEventListener('scroll', loadMore);
@@ -105,9 +105,9 @@ const Store = () => {
           <Header />
           <Nav onInputChange={handleSearch}/>
           <div className='filterbar'>
-            <label for='filterby'>Filter by: </label>
+            <label htmlFor='filterby'>Filter by: </label>
             <select name='filterby' onChange={onFilterChange}>
-              <option name='date' selected="selected">Date added</option>
+              <option name='date' defaultValue="selected">Date added</option>
               <option name='lowprice'>Price; low to high</option>
               <option name='highprice'>Price; high to low</option>
               <option name='atoz'>Alphabetically; A to Z</option>

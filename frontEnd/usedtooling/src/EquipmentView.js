@@ -20,7 +20,7 @@ const Product = () => {
   function confirmDelete(id){
     const formData = new FormData();
     formData.append('eid', id);
-    fetch('http://69.18.26.126:8080/deleteequipment', {
+    fetch('https://www.usedtooling.com/api/deleteequipment', {
       method : 'POST',
       body : formData
     }).then(response => response.text()).then(text => navigate("/equipment"));
@@ -30,7 +30,7 @@ const Product = () => {
     equipment.pictures = await Promise.all(
       equipment.pictures.map(async (p) => {
         const response = await fetch(
-          "http://69.18.26.126:8080/loadimg?imageurl=" +
+          "https://www.usedtooling.com/api/loadimg?imageurl=" +
             p
         );
         

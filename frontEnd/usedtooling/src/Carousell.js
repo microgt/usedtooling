@@ -23,7 +23,7 @@ const NewTools = () => {
 
   const generateDot = (className, i)=>{
     return (
-      <a className={className} id={i} onClick={navClick}></a>
+      <a key={Math.random()} className={className} id={i} onClick={navClick}></a>
     );
   };
 

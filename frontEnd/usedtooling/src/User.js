@@ -36,7 +36,7 @@ const User = (uinfo) => {
   async function getUserInformation(e){
     e.preventDefault();
       let u = null;
-      await fetch('http://69.18.26.126:8080/singleuser?uid=' + e.target.id + '&&token=' + token)
+      await fetch('https://www.usedtooling.com/api/singleuser?uid=' + e.target.id + '&&token=' + token)
       .then(response => response.json())
       .then(res => navigate("/userview", {state: {data: res}}));
   }
@@ -57,7 +57,7 @@ const User = (uinfo) => {
     const formData = new FormData();
     formData.append('uid', id);
     formData.append('token', getAuthToken());
-    fetch('http://69.18.26.126:8080/deleteuser', {
+    fetch('https://www.usedtooling.com/api/deleteuser', {
       method : 'POST',
       body : formData
     }).then(response => response.text()).then(text => {window.location.reload();});

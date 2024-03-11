@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -23,7 +24,6 @@ public class UserController {
     private EmailService emailService;
 
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/allusers")
     public Optional<List<User>> getAllUsers(@RequestParam(defaultValue = "") String token){
         if(token.isEmpty() || token.isBlank()) return null;
@@ -41,7 +41,6 @@ public class UserController {
         return Optional.ofNullable(userService.users());
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/singleuser")
     public Optional<User> getUserById(@RequestParam(defaultValue = "") String uid, @RequestParam(defaultValue = "") String token){
 
@@ -63,7 +62,6 @@ public class UserController {
     }
 
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/handlelogin")
     public LoginResponse handleLogin(@RequestParam(defaultValue = "") String uname, @RequestParam(defaultValue = "") String pwd){
         User u = null;
@@ -80,7 +78,6 @@ public class UserController {
         }
         return response;
     }
-    @CrossOrigin(origins = "*")
     @Transactional
     @PostMapping("/handleregister")
     public LoginResponse handleRegister(@RequestParam(defaultValue = "") String firstName
@@ -209,7 +206,6 @@ public class UserController {
         };
     }
 
-    @CrossOrigin("*")
     @Transactional
     @PostMapping("/deleteuser")
     public String deleteUser(@RequestParam(defaultValue = "") String uid, @RequestParam(defaultValue = "") String token){
@@ -259,7 +255,6 @@ public class UserController {
             return userService.deleteUser(uid);
     }
 
-    @CrossOrigin("*")
     @Transactional
     @PostMapping("/adduser")
     public LoginResponse addUser(@RequestParam(defaultValue = "") String firstName

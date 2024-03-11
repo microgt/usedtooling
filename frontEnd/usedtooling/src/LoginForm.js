@@ -37,7 +37,7 @@ const LoginForm = () => {
     formData.append('pwd', e.target.pwd.value);
     
     if(formData.uname !== ''){
-        fetch('http://69.18.26.126:8080/handlelogin', {
+        fetch('https://www.usedtooling.com/api/handlelogin', {
           method: 'post',
           body: formData
         }).then(response => response.json()).then(res => {
@@ -65,7 +65,7 @@ const LoginForm = () => {
     }
 
     if(formData.uname !== ''){
-        fetch('http://69.18.26.126:8080/handleregister', {
+        fetch('https://www.usedtooling.com/api/handleregister', {
           method: 'post',
           body: formData
         }).then(response => response.json()).then(res => {
@@ -104,9 +104,9 @@ const LoginForm = () => {
             pageState == 'login'?
             <div className='userform'>
                   <form onSubmit={handleLogin}>
-                    <label for='uname'>Username: </label>
+                    <label htmlFor='uname'>Username: </label>
                     <input required type='text' name='uname' />
-                    <label for='pwd'>Password: </label>
+                    <label htmlFor='pwd'>Password: </label>
                     <input required type='password' name='pwd'/>
                     <input disabled={hide} type='submit' value='Login'/>
                   </form>

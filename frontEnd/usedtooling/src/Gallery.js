@@ -13,7 +13,7 @@ const NewTools = (eq) => {
   const [pics, setPics] = useState([]);
 
   useEffect(()=>{
-    setPics(eq.equipment.eq.pictures.map(picture => "http://69.18.26.126:8080/loadimg?imageurl="+picture));
+    setPics(eq.equipment.eq.pictures.map(picture => "https://www.usedtooling.com/api/loadimg?imageurl="+picture));
   }, []);
 
   let timer;
@@ -27,9 +27,9 @@ const NewTools = (eq) => {
   const generateDot = (className, i)=>{
     return (
         pics.length > 0 && pics[i].split('.')[pics[i].split('.').length-1] === 'mp4'?
-        <img className={className} id={i} onClick={navClick} src={playbtn}/>
+        <img key={Math.random()} className={className} id={i} onClick={navClick} src={playbtn}/>
         :
-        <img className={className} id={i} onClick={navClick} src={pics[i]}/>      
+        <img key={Math.random()} className={className} id={i} onClick={navClick} src={pics[i]}/>      
     );
   };
 

@@ -26,7 +26,7 @@ const AddEquipment = () => {
       });
       
       let timer;
-      fetch('http://69.18.26.126:8080/addequipment', {
+      fetch('https://www.usedtooling.com/api/addequipment', {
         method: 'POST',
         body: formData
       }).then(response => response.text()).then(res => {
@@ -60,12 +60,12 @@ const AddEquipment = () => {
               {message === ''? 
                 <div className='storeContent'>
                   <form onSubmit={prepareData}>
-                    <label for='name'>Name: </label>
+                    <label htmlFor='name'>Name: </label>
                     <input required type='text' name='name'/>
-                    <label for='description'>Description: </label>
+                    <label htmlFor='description'>Description: </label>
                     <textarea type='text' rows="15" cols="100" name='description'/>
 
-                    <label required for='category'>Category: </label>
+                    <label required htmlFor='category'>Category: </label>
                     <select name='category'>
                       <option value='VERTICAL_LATHES'>Vertical Lathes</option>
                       <option value='VERTICAL_BORING_MILLS'>Vertical Boring Mills</option>
@@ -85,7 +85,7 @@ const AddEquipment = () => {
                       <option value='ENGINE_LATHES'>Engine Lathes</option>
                     </select>
 
-                    <label for='price'>Price: </label>
+                    <label htmlFor='price'>Price: </label>
                     <input required type='price' name='price'/>
                     <label id='upSelectBtn' htmlFor='fileinput'>Select Media</label>
                     <input required id='fileinput' type='file' multiple name='x' accept='image/png, image/jpeg, video/mp4' onChange={updatePics} style={{display: 'none'}} />

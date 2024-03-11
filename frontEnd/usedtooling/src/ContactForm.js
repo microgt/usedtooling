@@ -22,7 +22,7 @@ const handleSubmit = async (e) =>{
   });
 
   try{
-    const response = await fetch('http://69.18.26.126:8080/sendMessage',
+    const response = await fetch('https://www.usedtooling.com/api/sendMessage',
     {
       method: 'POST',
       headers: {
@@ -54,19 +54,19 @@ const handleSubmit = async (e) =>{
         <div className='contactFormContents'>
           <form onSubmit={handleSubmit}>
                   <div>
-                    <label for="name">Name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input type="text" id="name" name="name" value={formData.name} onChange={(e) => setData({ ...formData, name: e.target.value })} required size="44"/>
                   </div>
                   <div>
-                    <label for="subject">Subject:</label>
+                    <label htmlFor="subject">Subject:</label>
                     <input type="text" id="subject" name="contact" value={formData.subject} onChange={(e) => setData({ ...formData, subject: e.target.value })} required size="44"/>
                   </div>
                   <div>
-                    <label for="email">Email Address:</label>
+                    <label htmlFor="email">Email Address:</label>
                     <input type="email" id="contact" name="contact" value={formData.contact} onChange={(e) => setData({ ...formData, contact: e.target.value })} required size="44"/>
                   </div>
                   <div>
-                    <label for="message">Message:</label>
+                    <label htmlFor="message">Message:</label>
                     <textarea id="message" name="message" value={formData.message} onChange={(e) => setData({ ...formData, message: e.target.value })} required rows="15" cols="50"></textarea>
                   </div>
                   <div className='sendButton'>

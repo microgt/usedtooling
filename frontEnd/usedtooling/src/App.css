@@ -15,8 +15,6 @@ a:link{
 }
 .Header{
     display: flex;
-    padding-left: 5%;
-    padding-right: 5%;
     padding-top: 2%;
     padding-bottom: 2%;
     align-items: center;
@@ -30,8 +28,6 @@ a:link{
     background-image: linear-gradient(to right, darkblue, darkblue, blue);
     color: white;
     display: flex;
-    padding-left: 5%;
-    padding-right: 5%;
     padding-top: 2%;
     padding-bottom: 2%;
     align-items: center;
@@ -78,8 +74,10 @@ a:link{
     margin: 5%;
 }
 .newTools > a{
-    padding: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
     padding-bottom: 3%;
+    padding-top: 3%;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
     font-size: 300%;
@@ -137,8 +135,6 @@ a:link{
 }
 
 .toolBox{
-    padding-left: 6%;
-    padding-right: 6%;
     border-right-width: 1px;
     border-right: solid;
     border-right-color: rgba(0, 0, 0, 0.25);
@@ -146,7 +142,7 @@ a:link{
     font-family: Arial, Helvetica, sans-serif; 
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
     cursor: pointer;
 }
 .starContainer{
@@ -539,20 +535,21 @@ button {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 2%;
     border-style: none;
-    padding-bottom: 5%;
-    padding-top: 5%;
+    padding-bottom: 2%;
+    padding-top: 2%;
     text-align: center;
 }
 .equipment > .equipmentContent > .toolBox{
-    padding: 5%;
     border: none;
     align-items: center;
+    margin-bottom: 8%;
     width: 25%;
 }
 
 .toolBox > h3{
-   width: 50%; 
+   text-align: center;
 }
 
 .pageControls{
@@ -703,22 +700,20 @@ button {
     white-space: nowrap;
 }
 .viewdisplay{
-    width: 80%;
-    margin: auto;
-    text-align: center;
+    display: grid;
+    grid-template-columns: auto;
+    width: auto;
 }
 .view{
     display: flex;
-    gap: 10%;
-    padding: 1%;
-    justify-self: center;
-    white-space: nowrap;
 }
 .view > *{
-    flex: 1;
-    padding: 10px;
-    max-width: 100px;
+    width: -webkit-fill-available;
+    white-space: pre;
+    padding-bottom: 1%;
     cursor: pointer;
+    margin: 1em;
+    text-align: center;
 }
 .view link{
     flex: 1;
@@ -753,8 +748,16 @@ button {
     white-space: nowrap;
     margin-left: 10%;
     margin-right: 10%;
+    min-width: fit-content;
 }
-
+.toolBox > div{
+    display: flex;
+    font-size: x-large;
+    padding: 5%;
+    gap: 25%;
+    justify-content: center;
+    width: 100%;
+}
 .Views{
     width: 100%;
     justify-content: center;
@@ -769,6 +772,11 @@ button {
     justify-content: center;
 }
 
+.storeContent > form > input{
+    margin: 3;
+    padding: 3;
+}
+
 @media only screen and (max-width: 600px) {
     .newTools{
         overflow-x: hidden;
@@ -780,8 +788,10 @@ button {
         display: none;
     }    
     .riggingServices > a, .AboutUs > a, .ContactUs, .ContactForm > a{
-        padding: 2%;
+        padding-left: 2%;
+        padding-right: 2%;
         padding-bottom: 3%;
+        padding-top: 3%;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bolder;
         font-size: 300%;
@@ -843,11 +853,13 @@ button {
     }
     
     .leftInfo{
+        align-items: center;
        text-align: center;
     }
 
     .ebayButtons{
         text-align: center;
+        align-items: center;
         width: 100%;
     }
 
@@ -872,9 +884,22 @@ button {
     }
     .storeContent{
         margin-bottom: 50%;
+        text-align: center;
     }
     .storeContent > .toolBox{
         align-items: center;
+        width: 100%;
+    }
+    .storeContent > .toolBox > button{
+        width: 100%;
+    }
+    .storeContent > .toolBox{
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+    .ContactForm{
+        width: 100%;
+        padding: 2% 0%;
     }
     .filterbar {
         font-size: large;
@@ -895,21 +920,266 @@ button {
     }
     #mobilem{
         justify-content: space-between;
+        margin-top: initial;
         width: 100%;
         font-size: x-large;
-        padding-top: 5%;
-        padding-bottom: 5%;
-        margin-top: 10%;
-        margin-bottom: 100%;
     }
     .Nav, .fixed-nav{
-        padding: 10%;
-    }
-    .fixed-nav{
-        width: 80%;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        width: 100%;
     }
     .Nav > *, .fixed-nav > *{
-        padding: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+    .Header{
+        width: 100%;
+    }
+    .navlogin{
+        background-color: black;
+        margin-bottom: 100%;
+        text-align: left;
+    }
+    .navlogin > a{
+        font-size: 90%;
+        background-color: initial;
+        border-radius: initial;
+        padding: initial;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        margin: auto;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        white-space: nowrap;
+        display: block;
+        padding-left: 5%;
     }
 
+    .equipmentContent{
+        flex-direction: column;
+        align-content: center;
+    }
+    .equipment > .equipmentContent > .toolBox{
+        width: 100%;
+    }
+    .equipmentContent > .toolBox > h3{
+        width: 100%;
+    }
+    .equipmentContent > .toolBox > button{
+        width: 100%;
+        margin-bottom: 10%;
+        padding: 10%;
+    }
+    .equipmentContent > .toolBox > img{
+        width: 100%;
+    }
+    .equipmentContent > .toolBox > *{
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 1%;
+    }
+    .equipmentContent > .toolBox > div > *{
+        width: 300%;
+    }
+
+    .equipmentcontrols{
+        display: flex;
+        flex-direction: column;
+    }
+    .equipmentcontrols > form{
+        width: 90%;
+        align-self: center;
+    }
+    .equipmentcontrols > form > *{
+        width: 90%;
+        margin: 2%;
+        padding: 1%;
+        font-size: large;
+    }
+
+    .equipmentcontrols > form > input[type='submit']{
+        width: 100%;
+        margin: 2%;
+        background-color: darkred;
+        color: white;
+        font-size: large;
+        padding: 5%;
+    }
+    .equipmentcontrols > a{
+        padding-top: 5%;
+        padding-bottom: 5%;
+        margin: initial;
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+
+    .toolBox > div{
+        padding: initial;
+    }
+
+    .productContent > .etopInfo{
+        flex-direction: column-reverse;
+    }
+    .picgallery>.active {
+        animation: fadeIn 2s;
+        width: 100%;
+    }
+    .picgallery{
+        flex-direction: column;
+    }
+    .picgallery > .gdots{
+        flex-flow: nowrap;
+        overflow-y: scroll;
+        margin: 2%;
+        width: fit-content;
+    }
+    .picgallery > .gdots > *{
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 40%;
+        height: auto;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    .productContent > .etopInfo > .leftInfo{
+        width: 100%;
+    }
+    .productContent > .etopInfo > .leftInfo > #pdesc{
+        text-align: left;
+    }
+    .storeContent > form > *{
+        width: 90%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        justify-content: center;
+    }
+
+    #uploadedpics{
+        justify-content: center;
+    }
+
+    #uploadedpics > *{
+        padding: initial;
+        width: 100%;
+        height: fit-content;
+    }
+    .usrcontorlbar{
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .usrcontorlbar > *{
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5%;
+        width: 100%;
+    }
+    .usercontrolbar{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+    .userslist{
+        width: fit-content;
+        margin: auto;
+    }
+    .usrcontorlbar div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .usrcontorlbar div > *{
+        padding: 3%;
+    }
+    .userbox{
+        border-radius: 10%/15%;
+        display: flex;
+        margin: 5%;
+        padding: 5%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .userbox > *{
+        margin-bottom: 5%;
+        padding: 15%;
+        font-size: large;
+    }
+    .usercontrols{
+        padding: 10%;
+        gap: 100%;
+        justify-content: center;
+    }
+    .userform>form{
+        width: 100%;
+    }
+    .userform>form>*{
+        margin-bottom: 2%;
+    }
+    .userform>form>input[type=submit]{
+        width: 100%;
+        margin-right: auto;
+        padding: 5%;
+        color: white;
+        font-size: large;
+        background-color: darkred;
+    }
+    .productContent > .topInfo > .leftInfo{
+        width: 100%;
+    }
+    .productContent > .topInfo{
+        padding: 0%;
+    }
+    .ebayButtons>a{
+        padding: initial;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+    #pdesc{
+        padding-left: 0%;
+    }
+    .equipment > .equipmentContent> .toolBox{
+        padding: initial;
+    }
+
+    #upSelectBtn{
+        padding: initial;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        width: 100%;
+    }
+    #mobilem{
+        padding-left: 10%;
+    }
+    .search>img{
+        padding: initial;
+    }
+    .storeContent > form > input{
+        margin-left: initial;
+        margin-right: initial;
+        padding-left: initial;
+        padding-right: initial;
+    }
+    .storeContent > .toolBox > h3{
+        width: 100%;
+    }
+
+    .newTools > a{
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-bottom: 15%;
+        padding-top: 15%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        font-size: 300%;
+    }
+
+    .riggingServices > a, .AboutUs > a, .ContactUs, .ContactForm > a{
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-bottom: 15%;
+        padding-top: 15%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        font-size: 300%;
+        text-align: center;
+    }
 }

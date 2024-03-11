@@ -28,6 +28,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/api")
 public class EquipmentController {
 
     private static final String UPLOAD_DIR = "../equipmentpictures/";
@@ -35,13 +36,11 @@ public class EquipmentController {
     @Autowired
     EquipmentService equipmentService;
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/allequipment")
     public Optional<List<Equipment>> AllEquipment(@RequestParam(defaultValue = "0") String start, @RequestParam(defaultValue = "10") String end){
         return Optional.of(equipmentService.getAllEquipment(Integer.parseInt(start), Integer.parseInt(end)).getContent());
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/esearch")
     public Optional<List<Equipment>> SearchEquipment(@RequestParam(defaultValue = "") String esterm, @RequestParam(defaultValue = "ALL") String cterm, @RequestParam(defaultValue = "datenew") String sort){
         List<Equipment> result = new ArrayList<>();
@@ -86,7 +85,6 @@ public class EquipmentController {
         return Optional.ofNullable(mutalbeList);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/elist")
     public Optional<List<Equipment>> AllEquipment(){
         return equipmentService.allequipment();
@@ -126,7 +124,6 @@ public class EquipmentController {
         });
         return results;
     }
-    @CrossOrigin(origins = "*")
     @GetMapping("/loadimg")
     public ResponseEntity<byte[]> getImage(@RequestParam String imageurl) throws IOException{
         Resource resource = new FileSystemResource(imageurl);
@@ -169,7 +166,6 @@ public class EquipmentController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/deleteequipment")
     public String deleteEquipment(@RequestParam String eid){
         return equipmentService.deleteEquipment(eid);

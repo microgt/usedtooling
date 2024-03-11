@@ -12,7 +12,7 @@ const ToolBox = (props) => {
   useState([newImg]);
 
   function fetchImage(){
-    return fetch("http://69.18.26.126:8080/getimage?pid=" + props.value.id).then(response => response.text()).then(img => setNewImg(img));
+    return fetch("https://www.usedtooling.com/api/getimage?pid=" + props.value.id).then(response => response.text()).then(img => setNewImg(img));
   };
   const navigateToChild = () => {
     navigate("/product", {state: {data: props.value}});
@@ -22,7 +22,7 @@ const ToolBox = (props) => {
       <img src={props.value.image == "https://ir.ebaystatic.com/cr/v/c1/s_1x2.gif"? fetchImage():props.value.image}/>
       <h3>{props.value.title}</h3>
       <h3>{props.value.price}</h3>
-      <StarContainer />
+      {/*<StarContainer />*/}
       <button onClick={navigateToChild}>View the product</button>
     </div>
   );

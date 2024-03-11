@@ -11,7 +11,7 @@ const Product = () => {
   const [info, setInfo] = useState({});
 
   useEffect(()=>{
-    fetch("http://69.18.26.126:8080/product?purl="+product.url, {
+    fetch("https://www.usedtooling.com/api/product?purl="+product.url, {
       method: 'GET',
       mode: 'cors',
       headers: {

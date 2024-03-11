@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
 public class EmailController {
     @Autowired
     private EmailService emailService;
-    @CrossOrigin(origins = "*")
     @PostMapping("/sendMessage")
     public ResponseEntity<String> home(@RequestBody ContactForm formData){
         try {

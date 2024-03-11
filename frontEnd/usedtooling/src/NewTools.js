@@ -5,11 +5,10 @@ import ToolBox from './ToolBox';
 const NewTools = () => {
 
   const [items, setItems] = useState([]);
-  const [boxPosition, setBoxPosition] = useState(-125);
   const [boxes, setBoxes] = useState([]); 
 
   useEffect(()=>{
-    fetch('http://69.18.26.126:8080/getnew', {
+    fetch('https://www.usedtooling.com/api/getnew', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -32,28 +31,28 @@ const NewTools = () => {
       setBoxes(items.map(item => <ToolBox key={Math.random()} value={item}/>));
   }, [items]);
 
-  function moveLeft(){
-      let newPos = boxPosition +25;
-      if(newPos > 0) newPos = 0;
-      if(newPos < -125) newPos = -125;
-      setBoxPosition(newPos);
+  function moveLeft(e){
+    e.preventDefault();
+    const container = document.querySelector('#newToolsContainer');
+    container.scrollLeft +=250;
+    console.log("left")
   }
-    function moveRight(){
-        let newPos = boxPosition -25;
-        if(newPos > 0) newPos = 0;
-        if(newPos < -125) newPos = -125;
-        setBoxPosition(newPos);
+    function moveRight(e){
+      e.preventDefault();
+      const container = document.querySelector('#newToolsContainer');
+      container.scrollLeft -=250;
+      console.log('right');
   }
 
   return (
     <div className="newTools">
       <a href='/store'>New Tools</a>
       <div className='tools'>
-        <button onClick={moveRight} id='lt'>&lt;</button>
-          <div style={{translate: boxPosition+"%", display: 'flex'}}> 
+        <button onClick={moveLeft} id='lt'>&lt;</button>
+          <div id='newToolsContainer' style={{overflow: 'scroll', display: 'flex'}}> 
             {boxes}
           </div>
-        <button onClick={moveLeft} id='gt'>&gt;</button>
+        <button onClick={moveRight} id='gt'>&gt;</button>
       </div>
     </div>
   );

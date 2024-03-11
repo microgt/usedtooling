@@ -46,7 +46,7 @@ const AddUser = () => {
     }
 
     if(formData.uname !== ''){
-        fetch('http://69.18.26.126:8080/adduser', {
+        fetch('https://www.usedtooling.com/api/adduser', {
           method: 'post',
           body: formData
         }).then(response => response.json()).then(res => {

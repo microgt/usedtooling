@@ -21,21 +21,26 @@ const Views = () => {
     formData.append('user', getUser()? getUser().userName : "");
     formData.append('date', date);
     formData.append('dateTo', dateTo);
-    const response = await fetch('http://69.18.26.126:8080/views', {method: 'POST', body: formData});
+    const response = await fetch('https://www.usedtooling.com/api/views', {method: 'POST', body: formData});
     
     const responseData = await response.json();
     const filteredData = responseData.filter(a => filterHelper(a));
     const sortedDate = filteredData.sort((a, b) => sortHelper(a, b));
-    setBoxes(sortedDate.map(v => <div className='view'>
-      <a name='IP' onClick={updateFilter}>{v.ip}</a>
-      <a name='URL' onClick={updateFilter}>{v.url}</a>
-      <a name='Device' onClick={updateFilter}>{formatAgent(v.agent)}</a>
-      <a name='Username' onClick={updateFilter}>{v.user? v.user.userName : 'None'}</a>
+    setBoxes(sortedDate.map(v => <div className='view' key={Math.random()}>
+      <a title={v.vip} name='IP' onClick={updateFilter}>{v.ip}</a>
+      <a title={v.url} name='URL' onClick={updateFilter}>{v.url}</a>
+      <a title={formatAgent(v.agent)} name='Device' onClick={updateFilter}>{formatAgent(v.agent)}</a>
+      <a title={v.user? v.user.userName : 'None'} name='Username' onClick={updateFilter}>{v.user? v.user.userName : 'None'}</a>
       <div style={{display:'flex', gap:'15%'}}>
-          <a onClick={updateFilter} name='Distance'>{(v.lon != null)? v.lon + ", " + v.lat : 'Unavailable'}</a>
+          <a onClick={updateFilter} name='Distance'>{(v.lon != null)? v.lat + ", " + v.lon : 'Unavailable'}</a>
           {(v.lon != null)?
-          <a style={{color:'darkred'}} href={(v.lon != null)?'https://www.openstreetmap.org/#map=18/'+ v.lon +'/'+ v.lat : ''} target={(v.lon != null)?'_blank' : ''}>&#10687;</a> : ''}
+          <a style={{color:'darkred'}} href={(v.lon != null)?'https://www.openstreetmap.org/#map=18/'+ v.lat +'/'+ v.lon : ''} target={(v.lon != null)?'_blank' : ''}>&#10687;</a> : ''}
       </div>
+      <a title={v.country} name='Country' onClick={updateFilter}>{v.country}</a>
+      <a title={v.regionName} name='Region' onClick={updateFilter}>{v.regionName}</a>
+      <a title={v.city} name='City' onClick={updateFilter}>{v.city}</a>
+      <a title={v.zip} name='Zip' onClick={updateFilter}>{v.zip}</a>
+
       <a name='Time' onClick={updateFilter}>{formatDate(v.dateTime)}</a>
     </div>));
   }
@@ -66,6 +71,10 @@ const Views = () => {
       const distance = haversineDistance(baseCoordinates, coordinates);
       return distance <= GEO_DISTANCE;
     }
+    if(filter[0] === 'Country') return a.country === filter[1];
+    if(filter[0] === 'Region') return a.regionName === filter[1];
+    if(filter[0] === 'City') return a.city === filter[1];
+    if(filter[0] === 'Zip') return a.zip === filter[1];
   }
 
   function sortHelper(a, b){
@@ -185,6 +194,10 @@ const Views = () => {
           <h3>Device</h3>
           <h3>User</h3>
           <h3>Location</h3>
+          <h3>country</h3>
+          <h3>Region</h3>
+          <h3>City</h3>
+          <h3>zip</h3>
           <h3>Time</h3>
         </div>
         {
