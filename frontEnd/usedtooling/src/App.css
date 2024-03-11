@@ -145,6 +145,12 @@ a:link{
     justify-content: center;
     cursor: pointer;
 }
+
+#newToolsContainer > .toolBox{
+    padding-right: 6%;
+    padding-left: 6%;
+}
+
 .starContainer{
     display: flex;
     justify-content: space-between;
