@@ -66,7 +66,9 @@ public class ViewController {
         LocalDateTime requestedDateTo = LocalDateTime.parse(dateTo + "T12:34:56", formatter);
 
         Optional<List<View>> views = viewService.findViewsByDate(requestedDate, requestedDateTo);
-        return Optional.of(views.orElse(new ArrayList<>()));
+        return Optional.of(views.orElse(new ArrayList<>()).stream()
+                .filter(v -> !v.getAgent().toLowerCase().contains("bot") && !v.getAgent().toLowerCase().contains(".com"))
+                .toList());
     }
 
 

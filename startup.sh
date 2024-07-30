@@ -12,9 +12,13 @@ echo "starting daily product grabber"
 gnome-terminal -- java -jar ~/Desktop/usedtooling/complete/target/ProductScraper-0.0.1-SNAPSHOT.jar
 echo "daily product grabber started successfully"
 
-echo "started detail grabber"
+echo "starting detail grabber"
 gnome-terminal -- java -jar ~/Desktop/usedtooling/testScrape/target/testScrape-1.0-SNAPSHOT.jar
-echo "detail graber started successfully"
+echo "detail grabber started successfully"
+
+echo "starting facebook grabber"
+gnome-terminal -- java -jar ~/Desktop/usedtooling/fbgrabber/target/fbgrabber-0.0.1-SNAPSHOT.jar
+echo "facebook grabber started successfully"
 
 echo "Services started successfully."
 

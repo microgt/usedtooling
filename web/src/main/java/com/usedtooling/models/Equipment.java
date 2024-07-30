@@ -33,17 +33,21 @@ public class Equipment {
     private String description;
     @Getter@Setter
     private double price;
+    @Column(columnDefinition="tinyint(1) default 0")
+    @Getter@Setter
+    private boolean isFBListing;
     @Getter@Setter
     @ElementCollection
     @Column(columnDefinition = "VARCHAR(999)")
     @Cascade(value = org.hibernate.annotations.CascadeType.ALL)
     private List<String> pictures;
 
-    public Equipment(String name, EquipmentCategories category, String description, double price){
+    public Equipment(String name, EquipmentCategories category, String description, double price, boolean isFBListing){
         this.name = name;
         this.category = category;
         this.description = description;
         this.price = price;
+        this.isFBListing = isFBListing;
     }
 
     @Override

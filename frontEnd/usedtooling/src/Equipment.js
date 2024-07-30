@@ -26,7 +26,7 @@ const Equipment = () => {
   }, [location.state]);
   
   useEffect(()=>{
-    fetch('https://www.usedtooling.com/api/allequipment?start='+ startPage+'&end=5',{method: 'GET',
+    fetch('https://www.usedtooling.com/api/allequipment?start='+ startPage+'&end=500',{method: 'GET',
   mode: 'cors',
   headers: {
       'Content-Type': 'application/json',
@@ -37,17 +37,6 @@ const Equipment = () => {
   useEffect(()=>{
     setBoxes(equipment.map(e=><EquipmentBox value={e} key={Math.random()} onUpdate={updatePage} />));
   }, [equipment]);
-
-  function moveForward(){
-    if(boxes.length <= 0){
-      setStartPage(startPage-1);
-      return;
-    }
-    (boxes.length < 5)? setStartPage(startPage) : setStartPage(startPage+1);
-  }
-  function moveBackwords(){
-    if(startPage > 0) setStartPage(startPage-1);
-  }
 
   const getUser = () => {
     return JSON.parse(window.localStorage.getItem('auth_user'));
@@ -140,24 +129,12 @@ const Equipment = () => {
                 </select>
                 </form>
               </div>
+              <div>
+                <h4>{boxes.length} Items</h4>
+              </div>
               <div className='equipmentContent'>
                 {boxes}
-              </div>
-              {
-                (equipment.length > 5)? 
-                <div></div>
-                :
-                <div className='pageControls'>
-                  <a onClick={moveBackwords}>
-                  &lt; Previous Page
-                  </a>
-                  <a>{startPage+1}</a>
-                  <a onClick={moveForward}>
-                    Next Page &gt;
-                  </a>
-                </div>
-              }
-              
+              </div>            
           </div>  
           <Footer />
     </div>

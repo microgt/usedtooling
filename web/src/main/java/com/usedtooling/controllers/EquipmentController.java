@@ -93,9 +93,9 @@ public class EquipmentController {
     @CrossOrigin(origins = "*")
     @Transactional
     @PostMapping("/addequipment")
-    public String AddProduct(@RequestParam(defaultValue = "") String id,@RequestParam String name, @RequestParam String description, @RequestParam String category, @RequestParam String price, @RequestParam("pics") List<MultipartFile> pics){
+    public String AddProduct(@RequestParam(defaultValue = "") String id,@RequestParam String name, @RequestParam String description, @RequestParam String category, @RequestParam String price, @RequestParam(value = "fb", required = false, defaultValue = "false") boolean isFBListing, @RequestParam("pics") List<MultipartFile> pics){
 
-        Equipment equipment = new Equipment(name, EquipmentCategories.valueOf(category.toUpperCase().replace(" ", "_")),description, Double.parseDouble(price));
+        Equipment equipment = new Equipment(name, EquipmentCategories.valueOf(category.toUpperCase().replace(" ", "_")),description, Double.parseDouble(price), isFBListing);
 
         long existingId = 0;
         if(!id.isEmpty() && !id.isBlank()) {
